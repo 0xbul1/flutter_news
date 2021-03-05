@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
@@ -83,31 +84,48 @@ class _WelcomePageState extends State<WelcomePage> {
   // 开始按钮
   Widget _buildStartButton() {
     return Container(
-      width: duSetWidth(295),
-      height: duSetHeight(44),
-      margin: EdgeInsets.only(bottom: duSetHeight(20)),
-      child: TextButton(
-        // style: ButtonStyle(
-        //   color: AppColors.primaryElement,
-        //   textColor: AppColors.primaryElementText,
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: Radii.k6pxRadius,
-        //   ),
-        // ),
-        style: ButtonStyle(
-          foregroundColor:
-              MaterialStateProperty.all(AppColors.primaryElementText),
-          backgroundColor: MaterialStateProperty.all(AppColors.primaryElement),
-          // shape:
-          //     MaterialStateProperty.all((BorderRadius) => {Radii.k6pxRadius}),
-          shape: RoundedRectangleBorder(
-            borderRadius: Radii.k6pxRadius,
-          ),
-        ),
-        child: Text('Get Started'),
-        onPressed: () {},
-      ),
-    );
+        width: duSetWidth(295),
+        height: duSetHeight(44),
+        margin: EdgeInsets.only(bottom: duSetHeight(20)),
+        child: TextButton(
+          // style: TextButton.styleFrom(
+          //   foregroundColor:
+          //       MaterialStateProperty.all(AppColors.primaryElementText),
+          //   backgroundColor: MaterialStateProperty.all(AppColors.primaryElement),
+          //   // shape:
+          //   //     MaterialStateProperty.all((BorderRadius) => {Radii.k6pxRadius}),
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: Radii.k6pxRadius,
+          //   ),
+          // ),
+          // style: ButtonStyle(
+          //   foregroundColor:
+          //       MaterialStateProperty.all(AppColors.primaryElementText),
+          //   backgroundColor:
+          //       MaterialStateProperty.all(AppColors.primaryElement),
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.all(Radius.circular(4)),
+          //   ),
+          // ),
+          style: TextButton.styleFrom(
+              primary: AppColors.primaryElementText,
+              backgroundColor: AppColors.primaryElement,
+              // shape: const BeveledRectangleBorder(
+              //     borderRadius: BorderRadius.all(
+              //   Radius.circular(5),
+              // )),
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.all(
+              //     Radius.circular(20),
+              //   ),
+              // )),
+              // https://www.woolha.com/tutorials/flutter-using-textbutton-widget-examples
+              shape: RoundedRectangleBorder(
+                borderRadius: Radii.k6pxRadius,
+              )),
+          child: Text('Get Started'),
+          onPressed: () {},
+        ));
   }
 
   @override
