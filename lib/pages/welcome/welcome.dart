@@ -124,7 +124,12 @@ class _WelcomePageState extends State<WelcomePage> {
                 borderRadius: Radii.k6pxRadius,
               )),
           child: Text('Get Started'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              '/sign-in',
+            );
+          },
         ));
   }
 
