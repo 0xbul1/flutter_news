@@ -18,7 +18,7 @@ Widget btnFlatButtonWidget({
     width: duSetWidth(width),
     height: duSetHeight(height),
     child: TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: TextButton.styleFrom(
         primary: fontColor,
         backgroundColor: gbColor,
@@ -83,7 +83,7 @@ Widget btnFlatButtonBorderOnlyWidget({
         borderRadius: Radii.k6pxRadius,
       )),
       child: Image.asset('assets/images/icons-$iconFileName.png'),
-      onPressed: () {},
+      onPressed: onPressed,
     ),
   );
 }
