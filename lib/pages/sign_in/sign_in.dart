@@ -135,7 +135,7 @@ class _SignInPageState extends State<SignInPage> {
             child: Row(
               children: [
                 btnFlatButtonWidget(
-                  onPressed: () {},
+                  onPressed: _handleNavSignUp,
                   gbColor: AppColors.thirdElement,
                   title: 'Sign up',
                 ),
