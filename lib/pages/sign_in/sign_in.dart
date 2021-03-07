@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/api/apis.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:flutter_news/common/entity/entities.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -25,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   // 执行登录操作
-  _handleSignIn() {
+  _handleSignIn() async {
     if (!duIsEmail(_emailController.value.text)) {
       toastInfo(msg: '请输入正确的邮箱');
       return;
@@ -34,6 +36,13 @@ class _SignInPageState extends State<SignInPage> {
       toastInfo(msg: '密码不能小于6位');
       return;
     }
+    UserLoginRequestEntity params = UserLoginRequestEntity(
+      email: _emailController.value.text,
+      password: duSHA256(_passController.value.text),
+    );
+    UserLoginResponseEntity res = await UserAPI.login(params: params);
+
+    print(res);
   }
 
   // logo
