@@ -51,6 +51,7 @@ class HttpUtil {
       ///
       /// 如果想以文本(字符串)格式接收响应数据，请使用 `PLAIN`.
       responseType: ResponseType.json,
+      // responseType: ResponseType.plain,
     );
 
     dio = new Dio(options);
