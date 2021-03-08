@@ -36,7 +36,8 @@ dependencies:
   cookie_jar: ^1.0.1
   dio_cookie_manager: ^1.0.0
 
-  localstorage: ^3.0.6+9
+  # localstorage: ^3.0.6+9
+  shared_preferences: ^2.0.3
 
   crypto: ^3.0.0
 
