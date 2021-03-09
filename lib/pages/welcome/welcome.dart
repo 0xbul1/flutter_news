@@ -135,6 +135,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // print(Global.profile.displayName);
     ScreenUtil.init(
       // 设备像素大小(必须在首页中获取)
       BoxConstraints(

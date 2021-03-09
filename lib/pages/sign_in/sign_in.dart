@@ -4,6 +4,7 @@ import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
 import 'package:flutter_news/common/entity/entities.dart';
+import 'package:flutter_news/global.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -40,9 +41,9 @@ class _SignInPageState extends State<SignInPage> {
       email: _emailController.value.text,
       password: duSHA256(_passController.value.text),
     );
-    UserLoginResponseEntity res = await UserAPI.login(params: params);
+    UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
 
-    print(res);
+    Global.saveProfile(userProfile);
   }
 
   // logo
