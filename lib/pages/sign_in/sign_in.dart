@@ -29,21 +29,23 @@ class _SignInPageState extends State<SignInPage> {
 
   // 执行登录操作
   _handleSignIn() async {
-    if (!duIsEmail(_emailController.value.text)) {
-      toastInfo(msg: '请输入正确的邮箱');
-      return;
-    }
-    if (!duCheckStringLength(_passController.value.text, 6)) {
-      toastInfo(msg: '密码不能小于6位');
-      return;
-    }
-    UserLoginRequestEntity params = UserLoginRequestEntity(
-      email: _emailController.value.text,
-      password: duSHA256(_passController.value.text),
-    );
-    UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
+    // if (!duIsEmail(_emailController.value.text)) {
+    //   toastInfo(msg: '请输入正确的邮箱');
+    //   return;
+    // }
+    // if (!duCheckStringLength(_passController.value.text, 6)) {
+    //   toastInfo(msg: '密码不能小于6位');
+    //   return;
+    // }
+    // UserLoginRequestEntity params = UserLoginRequestEntity(
+    //   email: _emailController.value.text,
+    //   password: duSHA256(_passController.value.text),
+    // );
+    // UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
 
-    Global.saveProfile(userProfile);
+    // Global.saveProfile(userProfile);
+    List<CategoryResponseEntity> res = await NewsAPI.categories();
+    print(res);
   }
 
   // logo
