@@ -6,3 +6,4 @@ export './http.dart';
 export './security.dart';
 export './storage.dart';
 export './catch.dart';
+export './iconfont.dart';
