@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/api/apis.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
-import 'package:flutter_news/common/entity/entities.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -43,8 +41,12 @@ class _SignInPageState extends State<SignInPage> {
     // UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
 
     // Global.saveProfile(userProfile);
-    List<CategoryResponseEntity> res = await NewsAPI.categories();
-    print(res);
+    // List<CategoryResponseEntity> res = await NewsAPI.categories();
+    // print(res);
+    Navigator.pushNamed(
+      context,
+      '/app',
+    );
   }
 
   // logo
@@ -126,7 +128,7 @@ class _SignInPageState extends State<SignInPage> {
       margin: EdgeInsets.only(top: duSetHeight(49)),
       child: Column(
         children: [
-          Icon(Iconfont.home),
+          // Icon(Iconfont.home),
           inputTextEdit(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
