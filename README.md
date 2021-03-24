@@ -6,9 +6,11 @@ A new Flutter study project.
   <summary>
   tip
   </summary>
-  <p>
+
+  <pre>
   code in macos_10.14.5 branch
-  </p>
-  <code>screenshot by command+shift+4 => space => mouseleftclick</code>
-  <pre>screenshot by command+shift+4 => space => mouseleftclick</pre>
+
+  screenshot by：
+  command+shift+4 => space => mouseleftclick
+  </pre>
 </details>
