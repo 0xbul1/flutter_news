@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     // 填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(375, 734),
-      allowFontScaling: true,
+      allowFontScaling: false,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
