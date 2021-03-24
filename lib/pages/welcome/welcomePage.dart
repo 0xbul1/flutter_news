@@ -117,7 +117,7 @@ class _WelcomePageState extends State<WelcomePage> {
       width: ftSetWidth(295),
       height: ftSetHeight(44),
       margin: EdgeInsets.only(
-        bottom: ftSetHeight(30),
+        bottom: ftSetHeight(20),
       ),
       child: TextButton(
         style: TextButton.styleFrom(
@@ -137,7 +137,12 @@ class _WelcomePageState extends State<WelcomePage> {
               borderRadius: Radii.k6pxRadius,
             )),
         child: Text('Get Started'),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            "/sign_in",
+          );
+        },
       ),
     );
   }

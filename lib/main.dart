@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/pages/welcomePage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_news/routes.dart';
+import 'package:flutter_news/pages/welcome/welcomePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,11 +20,27 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
-        // theme: ThemeData(
-        //   primarySwatch: Colors.blue,
-        // ),
         home: WelcomePage(),
+        routes: staticRoutes,
       ),
     );
   }
 }
+
+// class ContentWidget extends StatelessWidget {
+//   // const ContentWidget({Key key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Align(
+//       child: SafeArea(
+//         left: true,
+//         top: true,
+//         right: true,
+//         bottom: true,
+//         // minimum: const EdgeInsets.all(16),
+//         child: WelcomePage(),
+//       ),
+//     );
+//   }
+// }
