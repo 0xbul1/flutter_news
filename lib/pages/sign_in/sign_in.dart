@@ -169,6 +169,70 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  // 第三方登录
+  Widget _buildThirdPartyLogin() {
+    return Container(
+      width: ftSetWidth(295),
+      margin: EdgeInsets.only(bottom: ftSetHeight(40)),
+      child: Column(
+        children: <Widget>[
+          // title
+          Text(
+            "Or sign in with social networks",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.primaryText,
+              fontFamily: "Avenir",
+              fontWeight: FontWeight.w400,
+              fontSize: ftSetFontSize(16),
+            ),
+          ),
+          // 按钮
+          Padding(
+            padding: EdgeInsets.only(top: ftSetHeight(20)),
+            child: Row(
+              children: <Widget>[
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: "twitter",
+                ),
+                Spacer(),
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: "google",
+                ),
+                Spacer(),
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: "facebook",
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 注册按钮
+  Widget _buildSignupButton() {
+    return Container(
+      margin: EdgeInsets.only(bottom: ftSetHeight(20)),
+      child: btnFlatButtonWidget(
+        onPressed: () {},
+        width: 294,
+        gbColor: AppColors.secondaryElement,
+        fontColor: AppColors.primaryText,
+        title: "Sign up",
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,6 +242,9 @@ class _SignInPageState extends State<SignInPage> {
           children: [
             _buildLogo(),
             _buildInputForm(),
+            Spacer(),
+            _buildThirdPartyLogin(),
+            _buildSignupButton(),
           ],
         ),
       ),
