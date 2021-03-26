@@ -222,7 +222,12 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       margin: EdgeInsets.only(bottom: ftSetHeight(20)),
       child: btnFlatButtonWidget(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            "/sign_up",
+          );
+        },
         width: 294,
         gbColor: AppColors.secondaryElement,
         fontColor: AppColors.primaryText,
@@ -236,7 +241,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           children: [
