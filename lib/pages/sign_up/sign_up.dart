@@ -206,7 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
           onPressed: () {
             toastInfo(msg: '注册页面');
           },
-        )
+        ),
       ]),
       body: Center(
         child: Column(
