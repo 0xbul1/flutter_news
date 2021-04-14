@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/apis/apis.dart';
-import 'package:flutter_news/entities/entities.dart';
-import 'package:flutter_news/utils/utils.dart';
-import 'package:flutter_news/values/values.dart';
-import 'package:flutter_news/widgets/widgets.dart';
+import 'package:flutter_news/common/apis/apis.dart';
+import 'package:flutter_news/common/entities/entities.dart';
+import 'package:flutter_news/common/utils/utils.dart';
+import 'package:flutter_news/common/values/values.dart';
+import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:flutter_news/global.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -35,13 +36,17 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    UserRequestEntity params = UserRequestEntity(
-      email: _emailController.value.text,
-      password: ftSHA256(_passController.value.text),
-    );
+    // UserRequestEntity params = UserRequestEntity(
+    //   email: _emailController.value.text,
+    //   password: ftSHA256(_passController.value.text),
+    // );
 
-    UserResponseEntity res = await UserAPI.login(params: params);
-    print(res);
+    // UserResponseEntity res = await UserAPI.login(params: params);
+    // print(Global.profile);
+    Navigator.pushNamed(
+      context,
+      "/app",
+    );
     // 写本地 access_token , 不写全局，业务：离线登录
     // 全局数据 gUser
   }

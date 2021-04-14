@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/utils/utils.dart';
-import 'package:flutter_news/values/values.dart';
-import 'package:flutter_news/widgets/widgets.dart';
+import 'package:flutter_news/common/utils/utils.dart';
+import 'package:flutter_news/common/values/values.dart';
+import 'package:flutter_news/common/widgets/widgets.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

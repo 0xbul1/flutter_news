@@ -1,6 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/utils/utils.dart';
+import 'package:flutter_news/common/utils/utils.dart';
 
 Future<bool> toastInfo({
   @required String msg,
