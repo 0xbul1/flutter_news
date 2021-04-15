@@ -46,6 +46,15 @@ dependencies:
   # sha
   crypto: ^2.1.3
 
+  # 日期格式
+  intl: ^0.16.1
+
+  # ui
+  flutter_easyrefresh: ^2.1.0
+
+  # cache
+  cached_network_image: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
