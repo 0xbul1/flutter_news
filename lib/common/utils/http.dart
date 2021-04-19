@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/widgets/widgets.dart';
 import 'package:flutter_news/global.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
@@ -75,7 +76,20 @@ class HttpUtil {
     }, onError: (DioError e) {
       // print("错误之前");
       // Loading.complete(e.request.uri);
-      return createErrorEntity(e); //continue
+      ErrorEntity eInfo = createErrorEntity(e);
+      // 错误提示
+      toastInfo(msg: eInfo.message);
+      // 错误交互处理
+      var context = e.request.extra["context"];
+      if (context != null) {
+        switch (eInfo.code) {
+          case 401: // 没有权限 重新登录
+            goLoginPage(context);
+            break;
+          default:
+        }
+      }
+      return eInfo;
     }));
 
     // 加内存缓存
@@ -232,6 +246,7 @@ class HttpUtil {
   /// cacheDisk 是否磁盘缓存
   Future get(
     String path, {
+    @required BuildContext context,
     dynamic params,
     Options options,
     bool refresh = false,
@@ -240,28 +255,28 @@ class HttpUtil {
     String cacheKey,
     bool cacheDisk = false,
   }) async {
-    try {
-      Options requestOptions = options ?? Options();
-      requestOptions = requestOptions.merge(extra: {
-        "refresh": refresh,
-        "noCache": noCache,
-        "list": list,
-        "cacheKey": cacheKey,
-        "cacheDisk": cacheDisk,
-      });
-      Map<String, dynamic> _authorization = getAuthorizationHeader();
-      if (_authorization != null) {
-        requestOptions = requestOptions.merge(headers: _authorization);
-      }
-
-      var response = await dio.get(path,
-          queryParameters: params,
-          options: requestOptions,
-          cancelToken: cancelToken);
-      return response.data;
-    } on DioError catch (e) {
-      throw createErrorEntity(e);
+    // try {} on DioError catch (e) {
+    //   throw createErrorEntity(e);
+    // }
+    Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+      "refresh": refresh,
+      "noCache": noCache,
+      "list": list,
+      "cacheKey": cacheKey,
+      "cacheDisk": cacheDisk,
+    });
+    Map<String, dynamic> _authorization = getAuthorizationHeader();
+    if (_authorization != null) {
+      requestOptions = requestOptions.merge(headers: _authorization);
     }
+
+    var response = await dio.get(path,
+        queryParameters: params,
+        options: requestOptions,
+        cancelToken: cancelToken);
+    return response.data;
   }
 
   // /// restful post 操作
@@ -296,8 +311,16 @@ class HttpUtil {
   }
 
   /// restful put 操作
-  Future put(String path, {dynamic params, Options options}) async {
+  Future put(
+    String path, {
+    @required BuildContext context,
+    dynamic params,
+    Options options,
+  }) async {
     Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+    });
     Map<String, dynamic> _authorization = getAuthorizationHeader();
     if (_authorization != null) {
       requestOptions = requestOptions.merge(headers: _authorization);
@@ -308,8 +331,16 @@ class HttpUtil {
   }
 
   /// restful patch 操作
-  Future patch(String path, {dynamic params, Options options}) async {
+  Future patch(
+    String path, {
+    @required BuildContext context,
+    dynamic params,
+    Options options,
+  }) async {
     Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+    });
     Map<String, dynamic> _authorization = getAuthorizationHeader();
     if (_authorization != null) {
       requestOptions = requestOptions.merge(headers: _authorization);
@@ -320,8 +351,16 @@ class HttpUtil {
   }
 
   /// restful delete 操作
-  Future delete(String path, {dynamic params, Options options}) async {
+  Future delete(
+    String path, {
+    @required BuildContext context,
+    dynamic params,
+    Options options,
+  }) async {
     Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+    });
     Map<String, dynamic> _authorization = getAuthorizationHeader();
     if (_authorization != null) {
       requestOptions = requestOptions.merge(headers: _authorization);
@@ -332,8 +371,16 @@ class HttpUtil {
   }
 
   /// restful post form 表单提交操作
-  Future postForm(String path, {dynamic params, Options options}) async {
+  Future postForm(
+    String path, {
+    @required BuildContext context,
+    dynamic params,
+    Options options,
+  }) async {
     Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+    });
     Map<String, dynamic> _authorization = getAuthorizationHeader();
     if (_authorization != null) {
       requestOptions = requestOptions.merge(headers: _authorization);

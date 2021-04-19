@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entities/entities.dart';
-// import 'package:flutter_news/common/apis/apis.dart';
-// import 'package:flutter_news/common/entities/entities.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
 import 'package:flutter_news/global.dart';
-// import 'package:flutter_news/global.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -47,6 +44,9 @@ class _SignInPageState extends State<SignInPage> {
     // UserResponseEntity res = await UserAPI.login(params: params);
     // print(Global.profile);
     //
+    //
+    // 写本地 access_token , 不写全局，业务：离线登录
+    // 全局数据 gUser
     UserLoginRequestEntity params = UserLoginRequestEntity(
       email: _emailController.value.text,
       password: ftSHA256(_passController.value.text),
@@ -57,13 +57,10 @@ class _SignInPageState extends State<SignInPage> {
       params: params,
     );
     Global.saveProfile(userProfile);
-
     Navigator.pushNamed(
       context,
       "/app",
     );
-    // 写本地 access_token , 不写全局，业务：离线登录
-    // 全局数据 gUser
   }
 
   // logo

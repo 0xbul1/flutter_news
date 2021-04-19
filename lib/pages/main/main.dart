@@ -36,15 +36,19 @@ class _MainPageState extends State<MainPage> {
   // 读取所有数据
   _loadAllData() async {
     _categories = await NewsAPI.categories(
+      context: context,
       cacheDisk: true,
     );
     _channels = await NewsAPI.channels(
+      context: context,
       cacheDisk: true,
     );
     _newsRecommend = await NewsAPI.newsRecommend(
+      context: context,
       cacheDisk: true,
     );
     _newsPageList = await NewsAPI.newsPageList(
+      context: context,
       cacheDisk: true,
     );
 
@@ -62,11 +66,13 @@ class _MainPageState extends State<MainPage> {
   }) async {
     _selCategoryCode = categoryCode;
     _newsRecommend = await NewsAPI.newsRecommend(
+      context: context,
       params: NewsRecommendRequestEntity(categoryCode: categoryCode),
       refresh: refresh,
       cacheDisk: true,
     );
     _newsPageList = await NewsAPI.newsPageList(
+      context: context,
       params: NewsPageListRequestEntity(categoryCode: categoryCode),
       refresh: refresh,
       cacheDisk: true,
@@ -133,19 +139,31 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _buildCategories(),
-          Divider(height: 1),
-          _buildRecommend(),
-          Divider(height: 1),
-          _buildChannels(),
-          Divider(height: 1),
-          _buildNewsList(),
-          Divider(height: 1),
-          _buildEmailSubscribe(),
-        ],
+    return EasyRefresh(
+      enableControlFinishRefresh: true,
+      controller: _controller,
+      header: ClassicalHeader(),
+      onRefresh: () async {
+        await _loadNewsData(
+          _selCategoryCode,
+          refresh: true,
+        );
+        _controller.finishRefresh();
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildCategories(),
+            Divider(height: 1),
+            _buildRecommend(),
+            Divider(height: 1),
+            _buildChannels(),
+            Divider(height: 1),
+            _buildNewsList(),
+            Divider(height: 1),
+            _buildEmailSubscribe(),
+          ],
+        ),
       ),
     );
   }
