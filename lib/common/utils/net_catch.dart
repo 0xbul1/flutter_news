@@ -24,6 +24,8 @@ class NetCache extends Interceptor {
 
   @override
   onRequest(RequestOptions options) async {
+    // 如果没有开启缓存，就返回配置
+    // 如果开启了缓存，走下面的缓存配置
     if (!CACHE_ENABLE) return options;
 
     // refresh标记是否是"下拉刷新"

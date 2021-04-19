@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_news/pages/index/index.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_news/global.dart';
 import 'package:flutter_news/routes.dart';
-import 'package:flutter_news/pages/welcome/welcomePage.dart';
+// import 'package:flutter_news/pages/welcome/welcomePage.dart';
 
 void main() => Global.init().then((e) => runApp(MyApp()));
 
@@ -15,15 +16,22 @@ class MyApp extends StatelessWidget {
     //   debugShowCheckedModeBanner: false,
     // );
     // 填入设计稿中设备的屏幕尺寸,单位dp
-    return ScreenUtilInit(
-      designSize: Size(375, 734),
-      allowFontScaling: false,
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        home: WelcomePage(),
-        routes: staticRoutes,
-      ),
+    // return ScreenUtilInit(
+    //   designSize: Size(375, 734),
+    //   allowFontScaling: false,
+    //   builder: () => MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     title: 'Material App',
+    //     home: WelcomePage(),
+    //     routes: staticRoutes,
+    //   ),
+    // );
+    //
+    return MaterialApp(
+      title: 'ducafecat.tech',
+      home: IndexPage(),
+      routes: staticRoutes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
