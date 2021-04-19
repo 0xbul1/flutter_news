@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/provider/provider.dart';
+import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/global.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class _AccountPageState extends State<AccountPage> {
         Divider(),
         MaterialButton(
           onPressed: () {
-            // goLoginPage(context);
+            goLoginPage(context);
           },
           child: Text('退出'),
         ),
