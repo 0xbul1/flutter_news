@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entities/entities.dart';
+// import 'package:flutter_news/common/apis/apis.dart';
+// import 'package:flutter_news/common/entities/entities.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
 import 'package:flutter_news/global.dart';
+// import 'package:flutter_news/global.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   //email的控制器
   final TextEditingController _emailController = TextEditingController();
-  //密码的控制器
+  // 密码的控制器
   final TextEditingController _passController = TextEditingController();
 
   // 跳转 注册界面
@@ -43,6 +46,18 @@ class _SignInPageState extends State<SignInPage> {
 
     // UserResponseEntity res = await UserAPI.login(params: params);
     // print(Global.profile);
+    //
+    UserLoginRequestEntity params = UserLoginRequestEntity(
+      email: _emailController.value.text,
+      password: ftSHA256(_passController.value.text),
+    );
+
+    UserLoginResponseEntity userProfile = await UserAPI.login(
+      context: context,
+      params: params,
+    );
+    Global.saveProfile(userProfile);
+
     Navigator.pushNamed(
       context,
       "/app",

@@ -14,6 +14,22 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
+  _handleSignUp() {
+    if (!ftCheckStringLength(_fullnameController.value.text, 5)) {
+      toastInfo(msg: '用户名不能小于5位');
+      return;
+    }
+    if (!ftIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!ftCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
+    Navigator.pop(context);
+  }
+
   // logo
   Widget _buildLogo() {
     return Container(
@@ -66,21 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
             height: ftSetHeight(44),
             margin: EdgeInsets.only(top: ftSetHeight(15)),
             child: btnFlatButtonWidget(
-              onPressed: () {
-                if (!ftCheckStringLength(_fullnameController.value.text, 5)) {
-                  toastInfo(msg: '用户名不能小于5位');
-                  return;
-                }
-                if (!ftIsEmail(_emailController.value.text)) {
-                  toastInfo(msg: '请正确输入邮件');
-                  return;
-                }
-                if (!ftCheckStringLength(_passController.value.text, 6)) {
-                  toastInfo(msg: '密码不能小于6位');
-                  return;
-                }
-                Navigator.pop(context);
-              },
+              onPressed: _handleSignUp,
               width: 295,
               fontWeight: FontWeight.w600,
               title: "Create an account",

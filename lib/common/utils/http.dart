@@ -3,6 +3,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_news/global.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
@@ -263,9 +264,28 @@ class HttpUtil {
     }
   }
 
+  // /// restful post 操作
+  // Future post(String path, {dynamic params, Options options}) async {
+  //   Options requestOptions = options ?? Options();
+  //   Map<String, dynamic> _authorization = getAuthorizationHeader();
+  //   if (_authorization != null) {
+  //     requestOptions = requestOptions.merge(headers: _authorization);
+  //   }
+  //   var response = await dio.post(path,
+  //       data: params, options: requestOptions, cancelToken: cancelToken);
+  //   return response.data;
+  // }
   /// restful post 操作
-  Future post(String path, {dynamic params, Options options}) async {
+  Future post(
+    String path, {
+    @required BuildContext context,
+    dynamic params,
+    Options options,
+  }) async {
     Options requestOptions = options ?? Options();
+    requestOptions = requestOptions.merge(extra: {
+      "context": context,
+    });
     Map<String, dynamic> _authorization = getAuthorizationHeader();
     if (_authorization != null) {
       requestOptions = requestOptions.merge(headers: _authorization);
