@@ -1,11 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/provider/provider.dart';
 import 'package:flutter_news/pages/index/index.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_news/global.dart';
 import 'package:flutter_news/routes.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_news/pages/welcome/welcomePage.dart';
 
-void main() => Global.init().then((e) => runApp(MyApp()));
+// void main() => Global.init().then((e) => runApp(MyApp()));
+/// provider方式一：先创建数据对象，再挂载
+// void main() => Global.init().then((e) => runApp(
+//       MultiProvider(
+//         providers: [
+//           ChangeNotifierProvider<AppState>.value(
+//             value: Global.appState,
+//           ),
+//         ],
+//         child: Consumer<AppState>(builder: (context, appState, _) {
+//           if (appState.isGrayFilter) {
+//             return ColorFiltered(
+//               colorFilter: ColorFilter.mode(Colors.white, BlendMode.color),
+//               child: MyApp(),
+//             );
+//           } else {
+//             return MyApp();
+//           }
+//         }),
+//       ),
+//     ));
+
+/// provider方式二：先创建数据对象，再挂载
+void main() => Global.init().then((e) => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<AppState>(
+            create: (_) => new AppState(),
+          ),
+        ],
+        child: Consumer<AppState>(builder: (context, appState, _) {
+          if (appState.isGrayFilter) {
+            return ColorFiltered(
+              colorFilter: ColorFilter.mode(Colors.white, BlendMode.color),
+              child: MyApp(),
+            );
+          } else {
+            return MyApp();
+          }
+        }),
+      ),
+    ));
 
 class MyApp extends StatelessWidget {
   @override
@@ -28,7 +71,7 @@ class MyApp extends StatelessWidget {
     // );
     //
     return MaterialApp(
-      title: 'ducafecat.tech',
+      title: 'Material App',
       home: IndexPage(),
       routes: staticRoutes,
       debugShowCheckedModeBanner: false,

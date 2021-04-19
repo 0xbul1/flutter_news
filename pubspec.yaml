@@ -56,6 +56,9 @@ dependencies:
   # cache
   cached_network_image: ^2.0.0
 
+  #provider
+  provider: ^4.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
